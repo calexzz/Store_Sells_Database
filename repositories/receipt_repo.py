@@ -7,7 +7,7 @@ from db.connection import get_connection
 def create(created_at, id_cashier):
     conn = get_connection()
     cursor = conn.execute(
-        '''INSERT INTO receipt (created_at, id_cashier) VALUES (? ?)''',
+        '''INSERT INTO receipt (created_at, id_cashier) VALUES (?, ?)''',
         (created_at, id_cashier)
     )
     conn.commit()
