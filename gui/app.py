@@ -40,20 +40,25 @@ class App(tk.Tk):
     def _build_container(self):
         self.container = tk.Frame(self, bg="#ecf0f1")
         self.container.pack(side="right", fill="both", expand=True)
+        self.frames = {}  # кэш экранов
 
     def show_frame(self, name):
-        for widget in self.container.winfo_children():
-            widget.destroy()
+        if name not in self.frames:
+            if name == "sale":
+                from gui.sale_screen import SaleScreen
+                self.frames[name] = SaleScreen(self.container)
+            elif name == "report":
+                from gui.report_screen import ReportScreen
+                self.frames[name] = ReportScreen(self.container)
+            elif name == "stock":
+                from gui.stock_screen import StockScreen
+                self.frames[name] = StockScreen(self.container)
 
-        if name == "sale":
-            from gui.sale_screen import SaleScreen
-            SaleScreen(self.container).pack(fill="both", expand=True)
-        elif name == "report":
-            from gui.report_screen import ReportScreen
-            ReportScreen(self.container).pack(fill="both", expand=True)
-        elif name == "stock":
-            from gui.stock_screen import StockScreen
-            StockScreen(self.container).pack(fill="both", expand=True)
+        # скрываем все, показываем нужный
+        for frame in self.frames.values():
+            frame.pack_forget()
+        self.frames[name].pack(fill="both", expand=True)
+        self.update_idletasks()
 
 if __name__ == '__main__':
     app = App()
