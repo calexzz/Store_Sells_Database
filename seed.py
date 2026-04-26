@@ -1,3 +1,7 @@
+"""
+    заполнение таблиц данными из csv-файлов
+"""
+
 import csv
 import os
 from db.connection import get_connection
