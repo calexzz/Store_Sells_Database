@@ -5,7 +5,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Касса")
-        self.geometry("900x600")
+        self.geometry("1100x700")
         self.resizable(False, False)
 
         self._build_nav()
@@ -29,7 +29,7 @@ class App(tk.Tk):
                 nav, text=text,
                 bg="#2c3e50", fg="white",
                 pady=12, padx=8,
-                font=("Arial", 11),
+                font=("Montserrat", 11),
                 cursor="hand2"
             )
             btn.pack(fill="x")
